@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anup Timilsina & Upasana Adhikari — You're Invited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:  #c4973a;
+      --rose:  #a84460;
+      --cream: #fdf9f4;
+      --dark:  #1e130c;
+      --mid:   #7a5040;
+    }
+
+    body {
+      background: var(--cream);
+      font-family: 'Jost', sans-serif;
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    /* ── Hero / Invite card ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 60px 24px;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, #fdeef4cc, transparent),
+        radial-gradient(ellipse 60% 40% at 80% 100%, #fdf4e0aa, transparent),
+        var(--cream);
+    }
+
+    .card {
+      max-width: 520px; width: 100%;
+      background: #fff;
+      border: 1px solid #e8d5a3;
+      border-radius: 6px;
+      padding: 52px 44px;
+      text-align: center;
+      box-shadow: 0 8px 48px rgba(164,68,96,.09);
+      position: relative;
+    }
+
+    /* Corner dots */
+    .card::before, .card::after,
+    .card .corner-b::before, .card .corner-b::after {
+      content: ''; position: absolute;
+      width: 9px; height: 9px;
+      border: 1px solid var(--gold);
+      transform: rotate(45deg);
+      background: #fff;
+    }
+    .card::before  { top: -5px; left: -5px; }
+    .card::after   { top: -5px; right: -5px; }
+    .card .corner-b::before { bottom: -5px; left: -5px; }
+    .card .corner-b::after  { bottom: -5px; right: -5px; }
+
+    .invite-label {
+      font-size: .6rem; font-weight: 300;
+      letter-spacing: 5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 18px;
+    }
+
+    .names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 8vw, 4rem);
+      font-weight: 300; color: var(--rose);
+      line-height: 1.05;
+    }
+    .names .amp {
+      font-style: italic; color: #e8d5a3;
+      font-size: .75em; display: inline-block; margin: 0 6px;
+    }
+
+    .rule {
+      display: flex; align-items: center; gap: 14px;
+      margin: 22px 0;
+    }
+    .rule hr { flex: 1; border: none; border-top: 1px solid #e8d5a3; }
+    .rule .dot { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+
+    .invite-msg {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 1.15rem;
+      color: var(--mid); line-height: 1.7; margin-bottom: 28px;
+    }
+
+    /* Details block */
+    .details {
+      background: #faf4e8;
+      border: 1px solid #e8d5a3;
+      border-radius: 4px;
+      padding: 24px 20px;
+      margin-bottom: 0;
+    }
+    .detail-row {
+      display: flex; align-items: flex-start; gap: 14px;
+      text-align: left; margin-bottom: 16px;
+    }
+    .detail-row:last-child { margin-bottom: 0; }
+    .detail-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+    .detail-text .lbl {
+      font-size: .58rem; font-weight: 300;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 3px;
+    }
+    .detail-text .val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--dark); line-height: 1.3;
+    }
+    .detail-text .val em { font-style: italic; color: var(--rose); }
+
+    /* ── Countdown ── */
+    .countdown-wrap {
+      padding: 50px 24px 40px; text-align: center;
+    }
+    .cd-label {
+      font-size: .6rem; font-weight: 300;
+      letter-spacing: 5px; text-transform: uppercase;
+      color: var(--rose); margin-bottom: 24px;
+    }
+    .countdown {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 14px;
+    }
+    .unit {
+      background: #fff; border-radius: 14px;
+      padding: 22px 20px 16px; min-width: 108px;
+      border: 1px solid #f0e0e8;
+      box-shadow: 0 3px 20px rgba(164,68,96,.07);
+      position: relative; overflow: hidden;
+      transition: transform .25s;
+    }
+    .unit::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--rose), var(--gold));
+    }
+    .unit:hover { transform: translateY(-5px); }
+    .unit .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.4rem; font-weight: 300; color: var(--rose); line-height: 1;
+    }
+    .unit .lbl {
+      font-size: .58rem; letter-spacing: 3px;
+      text-transform: uppercase; color: #c0a0b0; margin-top: 6px;
+    }
+    .married-msg {
+      display: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 2rem; color: var(--rose);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+
+    /* ── Divider ── */
+    .orn { text-align: center; padding: 8px 0; }
+    .orn svg { width: 220px; max-width: 80vw; }
+
+    /* ── Gallery ── */
+    .gallery { padding: 10px 20px 70px; }
+    .gallery-title {
+      text-align: center; margin-bottom: 32px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 1.5rem;
+      color: var(--mid); font-weight: 300;
+    }
+    .grid {
+      columns: 3 240px; column-gap: 14px;
+      max-width: 1000px; margin: 0 auto;
+    }
+    .photo {
+      break-inside: avoid; margin-bottom: 14px;
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid #e8d5a3;
+      box-shadow: 0 3px 16px rgba(164,68,96,.07);
+      cursor: pointer; position: relative;
+      transition: transform .3s cubic-bezier(.22,.68,0,1.2), box-shadow .3s;
+    }
+    .photo:hover { transform: translateY(-5px) scale(1.012); box-shadow: 0 12px 36px rgba(164,68,96,.16); }
+    .photo img { width: 100%; display: block; transition: transform .4s ease; }
+    .photo:hover img { transform: scale(1.05); }
+    .photo.tall img { height: 340px; object-fit: cover; }
+    .photo .cap {
+      padding: 9px 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: .9rem;
+      color: var(--rose); background: #fff;
+      border-top: 1px solid #f5eaee;
+      display: flex; justify-content: space-between;
+    }
+    .photo .cap span { font-family: 'Jost', sans-serif; font-style: normal; font-size: .55rem; letter-spacing: 2px; color: var(--gold); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center; padding: 28px 20px;
+      font-size: .65rem; font-weight: 300;
+      letter-spacing: 3px; color: #c0a898;
+      border-top: 1px solid #e8d5a3;
+    }
+    footer strong { color: var(--gold); font-weight: 400; }
+
+    /* ── Lightbox ── */
+    #lb {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(15,5,5,.92); backdrop-filter: blur(10px);
+      align-items: center; justify-content: center; flex-direction: column;
+    }
+    #lb.on { display: flex; }
+    #lb img { max-width: 88vw; max-height: 80vh; border-radius: 8px; object-fit: contain;
+      border: 1px solid rgba(196,151,58,.3); box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+    #lb .lbcap { margin-top: 16px; font-family: 'Cormorant Garamond', serif;
+      font-style: italic; color: #e8d5a3; font-size: 1.1rem; }
+    #lbx { position: absolute; top: 16px; right: 22px;
+      background: none; border: none; color: rgba(232,213,163,.7);
+      font-size: 2.2rem; cursor: pointer; }
+    #lbx:hover { color: #e8d5a3; }
+    .lbn { position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(196,151,58,.12); border: 1px solid rgba(196,151,58,.3);
+      color: #e8d5a3; font-size: 1.8rem; cursor: pointer;
+      border-radius: 50%; width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center; }
+    .lbn:hover { background: rgba(196,151,58,.28); }
+    #lbp { left: 18px; } #lbn2 { right: 18px; }
+
+    @media (max-width: 480px) {
+      .card { padding: 36px 22px; }
+      .grid { columns: 1; }
+      .lbn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Invite card ── -->
+<section class="hero">
+  <div class="card">
+    <div class="corner-b"></div>
+
+    <p class="invite-label">You are warmly invited</p>
+
+    <div class="names" style="line-height:1.3;">
+      Anup Timilsina<br/>
+      <span class="amp" style="display:block;font-size:.6em;margin:2px 0;">&amp;</span>
+      Upasana <span style="font-style:italic;color:#c0a0b0;font-size:.85em;">(Shiksha)</span> Adhikari
+    </div>
+    <div style="font-family:'Jost',sans-serif;font-size:.75rem;font-weight:300;letter-spacing:2px;color:#a08878;margin-top:10px;line-height:1.8;">
+      अनुप तिमिल्सीना<br/>&amp;<br/>उपासना (शिक्षा) अधिकारी
+    </div>
+
+    <div class="rule"><hr/><div class="dot"></div><hr/></div>
+
+    <p class="invite-msg">
+      We joyfully invite you to celebrate<br/>our wedding day with us.
+    </p>
+
+    <div class="details">
+      <div class="detail-row">
+        <div class="detail-icon">📅</div>
+        <div class="detail-text">
+          <div class="lbl">Date</div>
+          <div class="val"><em>Falgun 28</em> &nbsp;·&nbsp; Thursday, March 12, 2026</div>
+          <div style="font-family:'Jost',sans-serif;font-size:.78rem;font-weight:300;color:#a08878;margin-top:4px;letter-spacing:1px;">२०८२ फागुन २८ गते, बिहीबार</div>
+        </div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-icon">📍</div>
+        <div class="detail-text">
+          <div class="lbl">Venue</div>
+          <div class="val"><em>S.R.K.C Banquet</em> — Fulbari<br/>
+            <span style="font-size:.9rem;color:#aaa;">(Near CTEVT)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Countdown ── -->
+<div class="countdown-wrap">
+  <p class="cd-label">Counting down to the big day</p>
+  <div class="countdown" id="cd">
+    <div class="unit"><div class="num" id="d">00</div><div class="lbl">Days</div></div>
+    <div class="unit"><div class="num" id="h">00</div><div class="lbl">Hours</div></div>
+    <div class="unit"><div class="num" id="m">00</div><div class="lbl">Minutes</div></div>
+    <div class="unit"><div class="num" id="s">00</div><div class="lbl">Seconds</div></div>
+  </div>
+  <p class="married-msg" id="mmsg">&#10084; We Are Married! &#10084;</p>
+</div>
+
+<!-- ── divider ── -->
+<div class="orn" aria-hidden="true">
+  <svg viewBox="0 0 220 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="15" x2="80" y2="15" stroke="#e8d5a3" stroke-width="1"/>
+    <circle cx="90" cy="15" r="2" fill="#e8d5a3"/>
+    <circle cx="110" cy="15" r="5" fill="none" stroke="#c4973a" stroke-width="1.2"/>
+    <circle cx="110" cy="15" r="2" fill="#c4973a"/>
+    <circle cx="130" cy="15" r="2" fill="#e8d5a3"/>
+    <line x1="140" y1="15" x2="220" y2="15" stroke="#e8d5a3" stroke-width="1"/>
+  </svg>
+</div>
+
+<!-- ── Photos ── -->
+<section class="gallery">
+  <p class="gallery-title">A few moments together</p>
+  <div class="grid">
+
+    <div class="photo tall" onclick="openLb(0)">
+      <img src="first-meet-photo.jpeg" alt="First Meet" loading="lazy"/>
+      <div class="cap">First Meet <span>01</span></div>
+    </div>
+    <div class="photo" onclick="openLb(1)">
+      <img src="firstphototogether.jpeg" alt="First Photo Together" loading="lazy"/>
+      <div class="cap">First Photo Together <span>02</span></div>
+    </div>
+    <div class="photo" onclick="openLb(2)">
+      <img src="firstphototogether2.jpeg" alt="More Firsts" loading="lazy"/>
+      <div class="cap">More Firsts <span>03</span></div>
+    </div>
+    <div class="photo" onclick="openLb(3)">
+      <img src="photo1.jpeg" alt="Just the Two of Us" loading="lazy"/>
+      <div class="cap">Just the Two of Us <span>04</span></div>
+    </div>
+    <div class="photo tall" onclick="openLb(4)">
+      <img src="fulframephototo-togetherphotot.jpeg" alt="Full Frame Together" loading="lazy"/>
+      <div class="cap">Full Frame Together <span>05</span></div>
+    </div>
+    <div class="photo" onclick="openLb(5)">
+      <img src="adventuretogether.jpeg" alt="Adventure Together" loading="lazy"/>
+      <div class="cap">Adventure Together <span>06</span></div>
+    </div>
+    <div class="photo" onclick="openLb(6)">
+      <img src="ouradventures.jpeg" alt="Our Adventures" loading="lazy"/>
+      <div class="cap">Our Adventures <span>07</span></div>
+    </div>
+    <div class="photo" onclick="openLb(7)">
+      <img src="more-photos-together.jpeg" alt="More Photos Together" loading="lazy"/>
+      <div class="cap">More Photos Together <span>08</span></div>
+    </div>
+    <div class="photo tall" onclick="openLb(8)">
+      <img src="momentwesaidyes.jpeg" alt="The Moment We Said Yes" loading="lazy"/>
+      <div class="cap">The Moment We Said Yes <span>09</span></div>
+    </div>
+    <div class="photo" onclick="openLb(9)">
+      <img src="lokingforwardforforever.jpeg" alt="Looking Forward to Forever" loading="lazy"/>
+      <div class="cap">Looking Forward to Forever <span>10</span></div>
+    </div>
+    <div class="photo" onclick="openLb(10)">
+      <img src="somemorephotos.jpeg" alt="More Cherished Moments" loading="lazy"/>
+      <div class="cap">More Cherished Moments <span>11</span></div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <strong>Anup Timilsina &amp; Upasana (Shiksha) Adhikari</strong> &nbsp;·&nbsp; <strong>Falgun 28 · March 12, 2026</strong>
+</footer>
+
+<!-- ── Lightbox ── -->
+<div id="lb" role="dialog" aria-modal="true">
+  <button id="lbx" onclick="closeLb()" aria-label="Close">&times;</button>
+  <button class="lbn" id="lbp" onclick="navLb(-1)" aria-label="Previous">&#8249;</button>
+  <img id="lbi" src="" alt=""/>
+  <p class="lbcap" id="lbc"></p>
+  <button class="lbn" id="lbn2" onclick="navLb(1)" aria-label="Next">&#8250;</button>
+</div>
+
+<script>
+  /* Countdown */
+  const wedding = new Date('2026-03-12T00:00:00');
+  const pad = n => String(n).padStart(2,'0');
+  function tick() {
+    const diff = wedding - new Date();
+    if (diff <= 0) {
+      document.getElementById('cd').style.display = 'none';
+      document.getElementById('mmsg').style.display = 'block';
+      return;
+    }
+    document.getElementById('d').textContent = pad(Math.floor(diff / 864e5));
+    document.getElementById('h').textContent = pad(Math.floor((diff % 864e5) / 36e5));
+    document.getElementById('m').textContent = pad(Math.floor((diff % 36e5) / 6e4));
+    document.getElementById('s').textContent = pad(Math.floor((diff % 6e4) / 1e3));
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* Lightbox */
+  const photos = [
+    { src:'first-meet-photo.jpeg',               cap:'First Meet'                  },
+    { src:'firstphototogether.jpeg',             cap:'First Photo Together'        },
+    { src:'firstphototogether2.jpeg',            cap:'More Firsts'                 },
+    { src:'photo1.jpeg',                         cap:'Just the Two of Us'          },
+    { src:'fulframephototo-togetherphotot.jpeg', cap:'Full Frame Together'         },
+    { src:'adventuretogether.jpeg',              cap:'Adventure Together'          },
+    { src:'ouradventures.jpeg',                  cap:'Our Adventures'              },
+    { src:'more-photos-together.jpeg',           cap:'More Photos Together'        },
+    { src:'momentwesaidyes.jpeg',                cap:'The Moment We Said Yes'      },
+    { src:'lokingforwardforforever.jpeg',        cap:'Looking Forward to Forever'  },
+    { src:'somemorephotos.jpeg',                 cap:'More Cherished Moments'      },
+  ];
+  let cur = 0;
+  const lbi = document.getElementById('lbi'), lbc = document.getElementById('lbc');
+  function show() { lbi.src = photos[cur].src; lbi.alt = photos[cur].cap; lbc.textContent = photos[cur].cap; }
+  function openLb(i) { cur=i; show(); document.getElementById('lb').classList.add('on'); document.body.style.overflow='hidden'; }
+  function closeLb() { document.getElementById('lb').classList.remove('on'); document.body.style.overflow=''; }
+  function navLb(d) { cur=(cur+d+photos.length)%photos.length; show(); }
+  document.getElementById('lb').addEventListener('click', e => { if(e.target===document.getElementById('lb')) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if(!document.getElementById('lb').classList.contains('on')) return;
+    if(e.key==='Escape') closeLb();
+    if(e.key==='ArrowLeft') navLb(-1);
+    if(e.key==='ArrowRight') navLb(1);
+  });
+</script>
+</body>
+</html>
