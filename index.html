@@ -5,231 +5,217 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Anup Timilsina & Upasana Adhikari — You're Invited</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Kalimati&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold:  #c4973a;
-      --rose:  #a84460;
-      --cream: #fdf9f4;
-      --dark:  #1e130c;
-      --mid:   #7a5040;
+      --accent: #b07080;
+      --dark:   #111111;
+      --mid:    #666666;
+      --soft:   #aaaaaa;
+      --line:   #e5e5e5;
+      --bg:     #ffffff;
     }
 
     body {
-      background: var(--cream);
-      font-family: 'Jost', sans-serif;
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
       color: var(--dark);
       min-height: 100vh;
     }
 
-    /* ── Hero / Invite card ── */
+    /* ── Hero ── */
     .hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
       padding: 60px 24px;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, #fdeef4cc, transparent),
-        radial-gradient(ellipse 60% 40% at 80% 100%, #fdf4e0aa, transparent),
-        var(--cream);
+      background: #fff;
     }
 
     .card {
-      max-width: 520px; width: 100%;
-      background: #fff;
-      border: 1px solid #e8d5a3;
-      border-radius: 6px;
-      padding: 52px 44px;
+      max-width: 480px; width: 100%;
       text-align: center;
-      box-shadow: 0 8px 48px rgba(164,68,96,.09);
-      position: relative;
-    }
-
-    /* Corner dots */
-    .card::before, .card::after,
-    .card .corner-b::before, .card .corner-b::after {
-      content: ''; position: absolute;
-      width: 9px; height: 9px;
-      border: 1px solid var(--gold);
-      transform: rotate(45deg);
       background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 52px 44px;
+      box-shadow: 0 4px 32px rgba(0,0,0,.06);
     }
-    .card::before  { top: -5px; left: -5px; }
-    .card::after   { top: -5px; right: -5px; }
-    .card .corner-b::before { bottom: -5px; left: -5px; }
-    .card .corner-b::after  { bottom: -5px; right: -5px; }
 
     .invite-label {
-      font-size: .6rem; font-weight: 300;
-      letter-spacing: 5px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 18px;
+      font-size: .6rem; font-weight: 400;
+      letter-spacing: 6px; text-transform: uppercase;
+      color: var(--soft); margin-bottom: 32px;
     }
 
     .names {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.6rem, 8vw, 4rem);
-      font-weight: 300; color: var(--rose);
-      line-height: 1.05;
+      font-size: clamp(2.8rem, 8vw, 4.2rem);
+      font-weight: 300; color: var(--dark);
+      line-height: 1.1;
     }
     .names .amp {
-      font-style: italic; color: #e8d5a3;
-      font-size: .75em; display: inline-block; margin: 0 6px;
+      font-style: italic; color: var(--line);
+      font-size: .7em; display: block; margin: 4px 0;
     }
 
     .rule {
-      display: flex; align-items: center; gap: 14px;
-      margin: 22px 0;
+      display: flex; align-items: center; gap: 16px;
+      margin: 28px 0;
     }
-    .rule hr { flex: 1; border: none; border-top: 1px solid #e8d5a3; }
-    .rule .dot { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+    .rule hr { flex: 1; border: none; border-top: 1px solid var(--line); }
+    .rule .dot { width: 4px; height: 4px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
 
     .invite-msg {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: 1.15rem;
-      color: var(--mid); line-height: 1.7; margin-bottom: 28px;
+      font-style: italic; font-size: 1.35rem;
+      color: var(--mid); line-height: 1.9; margin-bottom: 36px;
+      text-align: center;
+    }
+    .invite-msg strong {
+      font-style: normal; font-weight: 400;
+      color: var(--dark);
     }
 
     /* Details block */
     .details {
-      background: #faf4e8;
-      border: 1px solid #e8d5a3;
-      border-radius: 4px;
+      background: #f9f9f9;
+      border: 1px solid var(--line);
+      border-radius: 6px;
       padding: 24px 20px;
-      margin-bottom: 0;
     }
     .detail-row {
-      display: flex; align-items: flex-start; gap: 14px;
-      text-align: left; margin-bottom: 16px;
+      display: flex; align-items: flex-start; gap: 16px;
+      text-align: left; margin-bottom: 20px;
     }
     .detail-row:last-child { margin-bottom: 0; }
-    .detail-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+    .detail-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; opacity: .5; }
     .detail-text .lbl {
-      font-size: .58rem; font-weight: 300;
-      letter-spacing: 4px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 3px;
+      font-size: .55rem; font-weight: 500;
+      letter-spacing: 5px; text-transform: uppercase;
+      color: var(--soft); margin-bottom: 4px;
     }
     .detail-text .val {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; color: var(--dark); line-height: 1.3;
+      font-size: 1.15rem; color: var(--dark); line-height: 1.4;
     }
-    .detail-text .val em { font-style: italic; color: var(--rose); }
+    .detail-text .val em { font-style: italic; color: var(--accent); }
 
     /* ── Countdown ── */
     .countdown-wrap {
-      padding: 50px 24px 40px; text-align: center;
+      padding: 64px 24px 56px; text-align: center;
+      border-top: 1px solid var(--line);
     }
     .cd-label {
-      font-size: .6rem; font-weight: 300;
-      letter-spacing: 5px; text-transform: uppercase;
-      color: var(--rose); margin-bottom: 24px;
+      font-size: .55rem; font-weight: 400;
+      letter-spacing: 6px; text-transform: uppercase;
+      color: var(--soft); margin-bottom: 36px;
     }
     .countdown {
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 14px;
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;
     }
     .unit {
-      background: #fff; border-radius: 14px;
-      padding: 22px 20px 16px; min-width: 108px;
-      border: 1px solid #f0e0e8;
-      box-shadow: 0 3px 20px rgba(164,68,96,.07);
-      position: relative; overflow: hidden;
-      transition: transform .25s;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px 28px 18px;
+      min-width: 100px; text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      transition: transform .25s ease, box-shadow .25s ease;
     }
-    .unit::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--rose), var(--gold));
-    }
-    .unit:hover { transform: translateY(-5px); }
+    .unit:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
     .unit .num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 3.4rem; font-weight: 300; color: var(--rose); line-height: 1;
+      font-size: 3.4rem; font-weight: 300; color: var(--dark); line-height: 1;
     }
     .unit .lbl {
-      font-size: .58rem; letter-spacing: 3px;
-      text-transform: uppercase; color: #c0a0b0; margin-top: 6px;
+      font-size: .5rem; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--soft); margin-top: 8px;
     }
     .married-msg {
       display: none;
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: 2rem; color: var(--rose);
+      font-style: italic; font-size: 2rem; color: var(--accent);
       animation: pulse 1.6s ease-in-out infinite;
     }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
 
     /* ── Divider ── */
-    .orn { text-align: center; padding: 8px 0; }
-    .orn svg { width: 220px; max-width: 80vw; }
+    .orn { text-align: center; padding: 8px 0; border-top: 1px solid var(--line); }
+    .orn svg { width: 160px; max-width: 60vw; }
 
     /* ── Gallery ── */
-    .gallery { padding: 10px 20px 70px; }
+    .gallery { padding: 0 20px 80px; }
     .gallery-title {
-      text-align: center; margin-bottom: 32px;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: 1.5rem;
-      color: var(--mid); font-weight: 300;
+      text-align: center; margin-bottom: 28px;
+      font-size: .55rem; font-weight: 400;
+      letter-spacing: 6px; text-transform: uppercase; color: var(--soft);
     }
     .grid {
       display: flex; justify-content: center;
       max-width: 1000px; margin: 0 auto;
     }
-    .grid .photo { max-width: 400px; width: 100%; }
+    .grid .photo { max-width: 420px; width: 100%; }
     .photo {
-      break-inside: avoid; margin-bottom: 14px;
-      border-radius: 10px; overflow: hidden;
-      border: 1px solid #e8d5a3;
-      box-shadow: 0 3px 16px rgba(164,68,96,.07);
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
       cursor: pointer; position: relative;
-      transition: transform .3s cubic-bezier(.22,.68,0,1.2), box-shadow .3s;
+      transition: transform .3s ease, box-shadow .3s ease;
     }
-    .photo:hover { transform: translateY(-5px) scale(1.012); box-shadow: 0 12px 36px rgba(164,68,96,.16); }
-    .photo img { width: 100%; display: block; transition: transform .4s ease; }
-    .photo:hover img { transform: scale(1.05); }
-    .photo.tall img { height: 340px; object-fit: cover; }
+    .photo:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.1); }
+    .photo img { width: 100%; display: block; transition: transform .5s ease; }
+    .photo:hover img { transform: scale(1.04); }
+    .photo.tall img { height: 360px; object-fit: cover; }
     .photo .cap {
-      padding: 9px 12px;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: .9rem;
-      color: var(--rose); background: #fff;
-      border-top: 1px solid #f5eaee;
+      padding: 12px 14px;
+      font-size: .6rem; font-weight: 400;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--soft); background: #fff;
+      border-top: 1px solid var(--line);
       display: flex; justify-content: space-between;
     }
-    .photo .cap span { font-family: 'Jost', sans-serif; font-style: normal; font-size: .55rem; letter-spacing: 2px; color: var(--gold); }
+    .photo .cap span { color: var(--accent); }
 
     /* ── Footer ── */
     footer {
       text-align: center; padding: 28px 20px;
-      font-size: .65rem; font-weight: 300;
-      letter-spacing: 3px; color: #c0a898;
-      border-top: 1px solid #e8d5a3;
+      font-size: .55rem; font-weight: 400;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--soft); border-top: 1px solid var(--line);
     }
-    footer strong { color: var(--gold); font-weight: 400; }
+    footer strong { color: var(--dark); font-weight: 500; }
 
     /* ── Lightbox ── */
     #lb {
       display: none; position: fixed; inset: 0; z-index: 999;
-      background: rgba(15,5,5,.92); backdrop-filter: blur(10px);
+      background: rgba(255,255,255,.97); backdrop-filter: blur(12px);
       align-items: center; justify-content: center; flex-direction: column;
     }
     #lb.on { display: flex; }
-    #lb img { max-width: 88vw; max-height: 80vh; border-radius: 8px; object-fit: contain;
-      border: 1px solid rgba(196,151,58,.3); box-shadow: 0 20px 60px rgba(0,0,0,.5); }
-    #lb .lbcap { margin-top: 16px; font-family: 'Cormorant Garamond', serif;
-      font-style: italic; color: #e8d5a3; font-size: 1.1rem; }
-    #lbx { position: absolute; top: 16px; right: 22px;
-      background: none; border: none; color: rgba(232,213,163,.7);
-      font-size: 2.2rem; cursor: pointer; }
-    #lbx:hover { color: #e8d5a3; }
+    #lb img { max-width: 88vw; max-height: 80vh; border-radius: 2px; object-fit: contain;
+      box-shadow: 0 20px 60px rgba(0,0,0,.12); }
+    #lb .lbcap { margin-top: 20px; font-size: .55rem; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--soft); }
+    #lbx { position: absolute; top: 20px; right: 28px;
+      background: none; border: none; color: var(--soft);
+      font-size: 1.8rem; cursor: pointer; line-height: 1; }
+    #lbx:hover { color: var(--dark); }
     .lbn { position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(196,151,58,.12); border: 1px solid rgba(196,151,58,.3);
-      color: #e8d5a3; font-size: 1.8rem; cursor: pointer;
-      border-radius: 50%; width: 48px; height: 48px;
-      display: flex; align-items: center; justify-content: center; }
-    .lbn:hover { background: rgba(196,151,58,.28); }
-    #lbp { left: 18px; } #lbn2 { right: 18px; }
+      background: none; border: 1px solid var(--line);
+      color: var(--mid); font-size: 1.4rem; cursor: pointer;
+      border-radius: 50%; width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color .2s, color .2s; }
+    .lbn:hover { border-color: var(--dark); color: var(--dark); }
+    #lbp { left: 20px; } #lbn2 { right: 20px; }
 
     @media (max-width: 480px) {
       .card { padding: 36px 22px; }
-      .grid { columns: 1; }
+      .unit { padding: 18px 16px 14px; min-width: 76px; }
+      .unit .num { font-size: 2.4rem; }
       .lbn { display: none; }
     }
   </style>
@@ -239,23 +225,23 @@
 <!-- ── Invite card ── -->
 <section class="hero">
   <div class="card">
-    <div class="corner-b"></div>
 
     <p class="invite-label">You are warmly invited</p>
 
-    <div class="names" style="line-height:1.3;">
+    <div class="names">
       Anup Timilsina<br/>
-      <span class="amp" style="display:block;font-size:.6em;margin:2px 0;">&amp;</span>
-      Upasana <span style="font-style:italic;color:#c0a0b0;font-size:.85em;">(Shiksha)</span> Adhikari
+      <span class="amp">&amp;</span>
+      Upasana <span style="font-style:italic;color:#bbb;font-size:.8em;">(Shiksha)</span> Adhikari
     </div>
-    <div style="font-family:'Jost',sans-serif;font-size:.75rem;font-weight:300;letter-spacing:2px;color:#a08878;margin-top:10px;line-height:1.8;">
-      अनुप तिमिल्सीना<br/>&amp;<br/>उपासना (शिक्षा) अधिकारी
+    <div style="font-family:'Kalimati',sans-serif;font-size:.78rem;letter-spacing:1px;color:#aaa;margin-top:12px;line-height:2;">
+      अनुप तिमिल्सीना &nbsp;&amp;&nbsp; उपासना (शिक्षा) अधिकारी
     </div>
 
     <div class="rule"><hr/><div class="dot"></div><hr/></div>
 
     <p class="invite-msg">
-      We joyfully invite you to celebrate<br/>our wedding day with us.
+      We joyfully invite you to celebrate<br/>
+      our <strong>wedding day</strong> with us.
     </p>
 
     <div class="details">
@@ -264,7 +250,7 @@
         <div class="detail-text">
           <div class="lbl">Date</div>
           <div class="val"><em>Falgun 28</em> &nbsp;·&nbsp; Thursday, March 12, 2026</div>
-          <div style="font-family:'Jost',sans-serif;font-size:.78rem;font-weight:300;color:#a08878;margin-top:4px;letter-spacing:1px;">२०८२ फागुन २८ गते, बिहीबार</div>
+          <div style="font-family:'Kalimati',sans-serif;font-size:.78rem;color:#aaa;margin-top:4px;letter-spacing:1px;">२०८२ फागुन २८ गते, बिहीबार</div>
         </div>
       </div>
       <div class="detail-row">
@@ -293,13 +279,10 @@
 
 <!-- ── divider ── -->
 <div class="orn" aria-hidden="true">
-  <svg viewBox="0 0 220 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="0" y1="15" x2="80" y2="15" stroke="#e8d5a3" stroke-width="1"/>
-    <circle cx="90" cy="15" r="2" fill="#e8d5a3"/>
-    <circle cx="110" cy="15" r="5" fill="none" stroke="#c4973a" stroke-width="1.2"/>
-    <circle cx="110" cy="15" r="2" fill="#c4973a"/>
-    <circle cx="130" cy="15" r="2" fill="#e8d5a3"/>
-    <line x1="140" y1="15" x2="220" y2="15" stroke="#e8d5a3" stroke-width="1"/>
+  <svg viewBox="0 0 160 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="10" x2="68" y2="10" stroke="#e5e5e5" stroke-width="1"/>
+    <circle cx="80" cy="10" r="3" fill="none" stroke="#b07080" stroke-width="1"/>
+    <line x1="92" y1="10" x2="160" y2="10" stroke="#e5e5e5" stroke-width="1"/>
   </svg>
 </div>
 
