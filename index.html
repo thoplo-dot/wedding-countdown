@@ -6,6 +6,7 @@
   <title>Anup Timilsina & Upasana Adhikari — You're Invited</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Kalimati&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -179,6 +180,49 @@
     }
     .photo .cap span { color: var(--accent); }
 
+    /* ── Location QR ── */
+    .location-wrap {
+      padding: 64px 24px; text-align: center;
+      border-top: 1px solid var(--line);
+    }
+    .location-heading {
+      font-size: .55rem; font-weight: 400;
+      letter-spacing: 6px; text-transform: uppercase;
+      color: var(--soft); margin-bottom: 40px;
+    }
+    .qr-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 24px; flex-wrap: nowrap;
+    }
+    .qr-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px 20px 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      display: flex; flex-direction: column; align-items: center;
+      gap: 12px; flex: 0 0 auto;
+    }
+    .qr-card canvas, .qr-card img { border-radius: 4px; }
+    .qr-label {
+      font-family: 'Kalimati', sans-serif;
+      font-size: .82rem; color: var(--mid);
+      line-height: 1.5; max-width: 160px; text-align: center;
+    }
+    .qr-dekhi {
+      font-family: 'Kalimati', sans-serif;
+      font-size: 1.3rem; color: var(--soft);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 560px) {
+      .qr-row { flex-direction: column; gap: 12px; }
+      .qr-card { width: 100%; max-width: 240px; }
+      .qr-card canvas, .qr-card img { width: 140px !important; height: 140px !important; }
+      .qr-dekhi { font-size: 1.1rem; }
+      .location-wrap { padding: 48px 16px; }
+    }
+
     /* ── Footer ── */
     footer {
       text-align: center; padding: 28px 20px;
@@ -299,6 +343,22 @@
   </div>
 </section>
 
+<!-- ── Location QR ── -->
+<section class="location-wrap">
+  <p class="location-heading">Location Information</p>
+  <div class="qr-row">
+    <div class="qr-card">
+      <div id="qr1"></div>
+      <div class="qr-label">पोखरा १२- गण्डकी हस्पिटल चोक<br/>(निजी निवास)</div>
+    </div>
+    <div class="qr-dekhi">देखी</div>
+    <div class="qr-card">
+      <div id="qr2"></div>
+      <div class="qr-label">S.R.K.C Banquet फुलबारी</div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <strong>Anup Timilsina &amp; Upasana (Shiksha) Adhikari</strong> &nbsp;·&nbsp; <strong>Falgun 28 · March 12, 2026</strong>
 </footer>
@@ -329,6 +389,20 @@
     document.getElementById('s').textContent = pad(Math.floor((diff % 6e4) / 1e3));
   }
   tick(); setInterval(tick, 1000);
+
+  /* QR Codes */
+  new QRCode(document.getElementById('qr1'), {
+    text: 'https://maps.app.goo.gl/8j1PFSMjQSidWv1C8',
+    width: 160, height: 160,
+    colorDark: '#111111', colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  });
+  new QRCode(document.getElementById('qr2'), {
+    text: 'https://maps.app.goo.gl/2MiXYdvUuRTZu7AC9',
+    width: 160, height: 160,
+    colorDark: '#111111', colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  });
 
   /* Lightbox */
   const photos = [
